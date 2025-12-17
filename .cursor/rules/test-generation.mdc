@@ -1,0 +1,124 @@
+---
+alwaysApply: true
+---
+
+# Reglas de Generación de Tests
+
+## Orden de Generación OBLIGATORIO
+
+Siempre generar código en este orden estricto:
+
+1. **Page Object** (`pages/[Feature]Page.ts`)
+2. **Fixture** (actualizar `fixtures/custom-fixtures.ts`)
+3. **Test Spec** (`tests/[feature].spec.ts`)
+4. **Data JSON** (`data-driven/[feature]-data.json`)
+
+## Estructura de Page Object
+
+```typescript
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
+
+export class [Feature]Page extends BasePage {
+  readonly [elementName]: Locator;
+  
+  constructor(page: Page) {
+    super(page);
+    this.[elementName] = page.locator('[data-testid="element-id"]');
+  }
+  
+  async [businessMethod](params) {
+    // Encapsular flujos de negocio
+  }
+}
+```
+
+**REQUISITOS:**
+- Extender `BasePage`
+- Usar `data-testid` para selectores
+- Exponer elementos como `readonly Locator`
+- Encapsular flujos de negocio en métodos
+
+## Estructura de Fixture
+
+Agregar al archivo existente `fixtures/custom-fixtures.ts`:
+
+```typescript
+import { [Feature]Page } from '../pages/[Feature]Page';
+
+type CustomFixtures = {
+  // ... fixtures existentes
+  [feature]Page: [Feature]Page;
+};
+
+export const test = base.extend<CustomFixtures>({
+  // ... fixtures existentes
+  [feature]Page: async ({ page }, use) => {
+    const [feature]Page = new [Feature]Page(page);
+    await use([feature]Page);
+  },
+});
+```
+
+## Estructura de Test
+
+```typescript
+import { test, expect } from '../fixtures/custom-fixtures';
+import [feature]Data from '../data-driven/[feature]-data.json';
+
+test.describe('[Feature] Tests', () => {
+  test.beforeEach(async ({ [feature]Page }) => {
+    await [feature]Page.goto('/[url]');
+  });
+
+  test('should [criterio de aceptación]', async ({ [feature]Page, page }) => {
+    // Usar datos de [feature]Data
+    // Usar métodos del Page Object
+    // Assertions con expect
+  });
+});
+```
+
+**REQUISITOS:**
+- Importar desde `custom-fixtures`
+- Usar datos de JSON importado
+- NO usar selectores raw en tests
+- Tests paralelizables y determinísticos
+
+## Estructura de Data JSON
+
+```json
+{
+  "[scenarioName]": {
+    "[field]": "[value]"
+  }
+}
+```
+
+**REQUISITOS:**
+- Nombre descriptivo: `[feature]-data.json`
+- NO incluir datos sensibles reales
+- Estructura clara por escenario
+
+## Nomenclatura
+
+- **Page Objects**: PascalCase, sufijo `Page` (ej: `LoginPage`, `DashboardPage`)
+- **Tests**: kebab-case, sufijo `.spec.ts` (ej: `login.spec.ts`)
+- **Data JSON**: kebab-case, sufijo `-data.json` (ej: `login-data.json`)
+- **Fixtures**: camelCase (ej: `loginPage`, `dashboardPage`)
+
+## Validaciones Automáticas
+
+Antes de generar, verificar:
+- ✅ Page Object extiende `BasePage`
+- ✅ Todos los selectores usan `data-testid`
+- ✅ Test importa desde `custom-fixtures`
+- ✅ Test usa datos de JSON importado
+- ✅ No hay selectores raw en tests
+- ✅ TypeScript strict mode compatible
+
+## Referencias
+
+- Constitución del proyecto: `.cursor/rules/playwright-rules.mdc`
+- BasePage existente: `pages/BasePage.ts`
+- Fixtures existentes: `fixtures/custom-fixtures.ts`

@@ -2,7 +2,7 @@
 
 Template de automatización con Playwright siguiendo el patrón Page Object Model y mejores prácticas.
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 playwright-template/
@@ -17,19 +17,22 @@ playwright-template/
 │   ├── test-data.json
 │   ├── login-data.json
 │   └── users.data.json
+├── specs/             # Especificaciones con criterios de aceptación
+│   ├── template.md    # Template para escribir specs
+│   └── example.md     # Ejemplo de spec
 ├── utils/             # Utilidades y helpers
 │   └── helpers.ts
 └── playwright.config.ts  # Configuración principal
 ```
 
-## 🚀 Instalación
+## Instalación
 
 ```bash
 npm install
 npx playwright install
 ```
 
-## 🧪 Ejecutar Tests
+## Ejecutar Tests
 
 ```bash
 # Todos los tests
@@ -92,7 +95,62 @@ Copia `.env.example` a `.env` y ajusta las variables:
 cp .env.example .env
 ```
 
-## 📖 Cómo Agregar Nuevos Tests
+## Spec-Driven Development
+
+Este proyecto incluye un sistema de generación automática de tests basado en criterios de aceptación.
+
+### ¿Cómo Funcionan los Comandos?
+
+Los archivos `.md` en `.cursor/commands/` son **comandos personalizados** que ejecutas en el chat de Cursor usando el prefijo `/`.
+
+**Ejemplo:**
+```
+/generate-tests login
+```
+
+Esto ejecuta el comando `generate-tests.md` y la IA sigue sus instrucciones para generar código.
+
+### Flujo de Trabajo
+
+1. **Escribe una spec** en `specs/[feature].md` con criterios de aceptación:
+   ```markdown
+   # Feature: Login
+   ## Criterios de Aceptación
+   - [ ] Usuario puede iniciar sesión con credenciales válidas
+   - [ ] Sistema muestra error con credenciales inválidas
+   ```
+
+2. **Genera el código automáticamente** usando el comando en el chat de Cursor:
+   ```
+   /generate-tests login
+   ```
+
+3. **La IA genera automáticamente**:
+   - Page Object en `pages/[Feature]Page.ts`
+   - Test spec en `tests/[feature].spec.ts`
+   - Data JSON en `data-driven/[feature]-data.json`
+   - Actualización de fixtures en `fixtures/custom-fixtures.ts`
+
+### Template de Spec
+
+Usa `specs/template.md` como guía para escribir tus especificaciones. Ver `specs/example.md` para un ejemplo completo.
+
+### Comandos Disponibles
+
+- **`/generate-tests [feature]`** - Genera código completo desde una spec
+  - Ejemplo: `/generate-tests login`
+  
+- **`/speckit.analyze [feature]`** - Analiza cobertura de tests vs criterios de aceptación
+  - Ejemplo: `/speckit.analyze login`
+  
+- **`/speckit.plan [feature]`** - Genera plan de implementación desde spec
+  - Ejemplo: `/speckit.plan login`
+
+- **`/speckit.constitution`** - Actualiza principios y reglas del proyecto
+
+**Guía completa:** Ver `specs/README.md` para más detalles sobre cómo usar los comandos.
+
+## Cómo Agregar Nuevos Tests (Manual)
 
 1. Crea un nuevo Page Object en `pages/`:
 ```typescript
@@ -109,3 +167,5 @@ export class HomePage extends BasePage {
 2. Agrega el fixture en `fixtures/custom-fixtures.ts`
 3. Crea tu test en `tests/`
 4. Usa data-testid para selectores estables
+
+**Recomendación**: Usa el sistema spec-driven para generar código automáticamente siguiendo las mejores prácticas del proyecto.
