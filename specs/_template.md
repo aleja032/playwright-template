@@ -9,10 +9,6 @@ Explica en 2-5 líneas qué problema resuelve y para quién.
 - **No incluye**:
   - 
 
-## Dependencias / Suposiciones
-- Front:
-- Back/API:
-- Flags/roles:
 
 ## Tipo de solicitud (obligatorio)
 - Frontend | Backend | Ambos
@@ -78,6 +74,8 @@ Regla:
 ## Reportes / Evidencia
 - Se debe poder ver el HTML report con `npm run report`.
 - Debe generarse/actualizarse `test-results/results.json` (reporter json).
+- **Screenshots**: Capturados automáticamente en cada fallo
+- **Traces**: Timeline completo guardado en fallos para debugging (`npx playwright show-trace test-results/<trace-file>.zip`)
 
 ## Definition of Done (DoD) QA
 - Tests determinísticos (sin `waitForTimeout`)
