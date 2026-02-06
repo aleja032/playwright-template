@@ -21,6 +21,11 @@ description: Generates/updates Playwright Page Objects, fixtures, specs, and dat
 3) `tests/[feature].spec.ts` (imports `test/expect` only from fixtures; no raw selectors)
 4) `data-driven/[feature]-data.json` (no hardcoded secrets)
 
+## Test Data Generation
+- Use `@faker-js/faker` for dynamic test data (names, emails, dates, etc.)
+- Example: `faker.person.firstName()`, `faker.internet.email()`, `faker.date.future()`
+- Keep static data (credentials, URLs) in `data-driven/*.json`
+
 ## Reporting requirement
 After implementing code, always include:
 - What changed

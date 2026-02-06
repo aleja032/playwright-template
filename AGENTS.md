@@ -61,6 +61,8 @@ Test data is stored in JSON files under `data-driven/`.
 - **NO Hardcoding**: Do not hardcode credentials, URLs, or sensitive data in specs.
 - **Import**: Use TypeScript JSON imports.
 - **Structure**: Organize by scenario name or domain.
+- **Dynamic Data**: Use `@faker-js/faker` for realistic test data (names, emails, dates, etc.)
+  - Example: `faker.person.firstName()`, `faker.internet.email()`
 
 ---
 

@@ -174,7 +174,15 @@ npm run report
 /playwright specs/checkout-step3-confirmation.md frontend
 ```
 
-### 2. Regenerar tests existentes
+### 2. Usar Faker para datos dinámicos
+Los tests pueden usar `@faker-js/faker` para generar datos realistas:
+```typescript
+import { faker } from '@faker-js/faker';
+const email = faker.internet.email();
+const name = faker.person.firstName();
+```
+
+### 3. Regenerar tests existentes
 Si modificas un spec, vuelve a ejecutar la skill. Te preguntará si actualizar archivos existentes.
 
 ### 3. Validar antes de commit

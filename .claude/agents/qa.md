@@ -24,4 +24,5 @@ description: QA reviewer for scenario-style acceptance criteria (Escenarios + bu
 - Gaps/questions (missing testids, missing negative cases, missing status codes, pending define items)
 - Proposed test plan: UI vs API vs E2E; happy/negative/edge per scenario/bullet
 - Proposed data-driven JSON schema (`data-driven/<feature>-data.json`)
+  - Note: Suggest using `@faker-js/faker` for dynamic data (names, emails, dates)
 - Security checklist (auth/authz, input validation, uploads, error leakage)

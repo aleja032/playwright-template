@@ -105,6 +105,7 @@ La skill ejecuta estos pasos en orden, adaptándose al contexto:
    - Datos organizados por escenario
    - Sin hardcoded secrets
    - Siguiendo esquema propuesto en QA review
+   - Dynamic data usando `@faker-js/faker` (names, emails, dates, etc.)
 
 **Post-generación:**
 - Ejecuta: `npm test tests/[feature].spec.ts`
