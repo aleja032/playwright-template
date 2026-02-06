@@ -1,0 +1,13 @@
+---
+description: Frontend data-testid extractor prompt. Use provided reference links or runnable URL to extract missing testids; never invent.
+---
+
+# Frontend data-testid extractor
+
+Reglas:
+- Nunca inventar `data-testid`.
+- Si hay URL runnable, abrirla y extraer `data-testid` del DOM.
+- Si solo hay enlace (Notion/Figma), extraer de la referencia; si no existe, preguntar.
+
+Sugerencia de flujo (agent-browser):
+- open → snapshot -i → identificar elementos → re-snapshot tras navegación

@@ -13,6 +13,25 @@ Siempre generar código en este orden estricto:
 3. **Test Spec** (`tests/[feature].spec.ts`)
 4. **Data JSON** (`data-driven/[feature]-data.json`)
 
+## Criterios de aceptación (AC) → Tests (trazabilidad)
+- Los AC se trabajan como **Escenarios** con bullets verificables (por rol/flujo), como el ejemplo provisto.
+- Cada test debe mapearse a un escenario/bullet (ideal: incluir `ESC-XX`/slug estable en el nombre del test).
+
+Regla de clarificación (antes de generar):
+- Si falta info (precondiciones, datos, mensajes, status codes, límites), **detener** y preguntar.
+- El agente **NO debe crear** AC nuevos.
+- Si faltan `data-testid` (Frontend), ir al **enlace proporcionado** y extraerlos; si sigue faltando info, detener y preguntar.
+- No inventar endpoints, mensajes, ni `data-testid`.
+
+### Formato Escenario (ejemplo)
+- "Escenario: Acceso y visualización" → lista de bullets.
+- Cada bullet debe ser un resultado esperado verificable (UI/API/E2E).
+
+### Validaciones
+Cuando un escenario incluye validaciones (tamaño de archivo, formatos, status codes), generar:
+- 1 test happy path
+- 1 test negativo por validación clave (si aplica)
+
 ## Estructura de Page Object
 
 ```typescript

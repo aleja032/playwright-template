@@ -12,7 +12,7 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 ## Goal
 
-Generate complete test code (Page Object, Fixture, Test Spec, Data JSON) from a spec file in `specs/` directory, following the project constitution in `.cursor/rules/playwright-rules.mdc` and generation rules in `.cursor/rules/test-generation.mdc`.
+Generate complete test code (Page Object, Fixture, Test Spec, Data JSON) from a spec file in `specs/` directory, following the project constitution in `.cursor/rules/playwright-rules.mdc`, generation rules in `.cursor/rules/test-generation.mdc`, and QA/DoD rules in `.cursor/rules/qa-deliverables.mdc`.
 
 ## Execution Steps
 
@@ -27,10 +27,16 @@ Generate complete test code (Page Object, Fixture, Test Spec, Data JSON) from a 
 Extract from spec:
 - Feature name and description
 - URL base
-- Acceptance criteria (list items)
-- UI elements with `data-testid`
+- **Acceptance criteria** as **Escenarios** with bullet points (each bullet = verifiable expected result)
+- UI elements with `data-testid` (Frontend)
+- API contracts (Backend) with expected status codes
 - Test data structure
 - Additional notes
+
+Clarification gate (mandatory):
+- The agent MUST NOT create new acceptance criteria. If AC are missing/incomplete, STOP and ask.
+- If preconditions/data are missing or the spec contains "pendiente definir"/TODOs, STOP and ask questions before generating any code.
+- If `data-testid` are missing (Frontend) but the spec provides a reference link (Notion/Figma/app URL), open the link and extract the missing info; if still unclear, STOP and ask.
 
 ### 3. Reference Project Rules
 

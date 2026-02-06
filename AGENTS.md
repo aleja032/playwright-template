@@ -72,6 +72,16 @@ When implementing new features or tests, follow this strict order:
 3. **Test Spec**: Create `tests/[feature].spec.ts` importing from `custom-fixtures`.
 4. **Data JSON**: Create `data-driven/[feature]-data.json` with the required test data.
 
+### Acceptance Criteria (AC) First (Mandatory)
+Before generating tests or implementing code:
+- AC must be provided by the user/team (the agent MUST NOT create new acceptance criteria).
+- Work from **scenario-style AC** (Escenarios + verifiable bullets), like the provided example.
+- The user/team must specify whether the request is Frontend or Backend (or both). If unclear, ask.
+- Ensure AC are understood and testable (preconditions + expected result).
+- If there are gaps/ambiguities (missing `data-testid`, missing data, "pending define" items), **stop and ask questions**. Do not guess.
+- For Frontend: if `data-testid` are missing but a reference link exists, open it and extract the missing info before proceeding.
+- Specs live in `specs/` (see `specs/_template.md`).
+
 ### V. BasePage Inheritance
 The `BasePage` class provides common utilities. Reuse them instead of raw Playwright calls:
 - `goto(path)`: Navigates to a path relative to `baseURL`.
@@ -108,7 +118,7 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
   - Use `waitForPageLoad()` from `BasePage` if needed.
   - Ensure tests are parallelizable and independent.
 - **BasePage Methods**: Utilize inherited methods like `clickElement`, `fillInput`, and `waitForPageLoad` to maintain consistency.
-- **Selectors**: If `data-testid` is unavailable, use `getByRole` or `getByText` as secondary options. Avoid CSS/XPath unless necessary.
+- **Selectors**: Prefer `data-testid`. If `data-testid` is missing, first try to extract it from the provided reference link(s) (or request it to be added). Use `getByRole`/`getByText` only as a last resort. Avoid CSS/XPath unless necessary.
 
 ---
 
@@ -126,6 +136,7 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
 
 ```text
 playwright-template/
+├── specs/           # Feature specs (acceptance criteria)
 ├── data-driven/     # Test data (JSON files)
 ├── fixtures/        # Custom fixtures (custom-fixtures.ts)
 ├── pages/           # Page Objects & API Controllers
@@ -136,4 +147,4 @@ playwright-template/
 ```
 
 ---
-*Derived from .cursor/rules and repository constitution. Updated: 2026-02-04*
+*Derived from .cursor/rules and repository constitution. Updated: 2026-02-06*

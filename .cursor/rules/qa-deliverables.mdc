@@ -1,0 +1,65 @@
+---
+alwaysApply: true
+---
+
+# QA / Definition of Done (DoD) y Resumen Obligatorio
+
+## 1) Cómo escribir / interpretar Criterios de Aceptación (AC)
+Un AC **debe ser testeable**.
+
+Regla principal (antes de crear):
+- **Primero entender** el flujo/escenario y confirmar precondiciones, datos y resultado esperado.
+- Si hay dudas, vacíos o ambigüedades, **preguntar y detenerse**. No asumir ni inventar detalles.
+
+Formato de trabajo (actual): **Escenarios** con bullets (como el ejemplo provisto).
+- Un escenario describe un flujo (por rol/permisos).
+- Cada bullet dentro del escenario es un **resultado esperado verificable**.
+- Validaciones (tamaño, formatos, límites, status codes, etc.) deben quedar explícitas.
+
+Reglas:
+- Atómico: 1 comportamiento por bullet/expectativa.
+- Medible: describe un resultado verificable (UI, API, estado, mensaje, status code).
+- Incluye precondiciones (rol, estado inicial, datos).
+- Evita vaguedades: "rápido", "intuitivo", "seguro" sin métrica.
+- Si aplica a Back y Front, el AC debe indicar claramente:
+  - Qué cambia en UI (elemento, navegación, mensaje)
+  - Qué cambia en API/servicio (endpoint, status, validaciones)
+
+Reglas de origen (no negociables):
+- El agente **NO debe crear** criterios de aceptación nuevos. Solo trabajar con lo entregado.
+- El usuario/equipo debe indicar si el caso es **Frontend** o **Backend** (o ambos). Si no está explícito, preguntar antes de ejecutar.
+
+Regla `data-testid` (Frontend):
+- Si faltan `data-testid`, ir al **enlace de referencia** (Notion/Figma/URL del sitio) y extraer la info necesaria.
+- Si aún no se puede confirmar, **detener** y pedir `data-testid` (no inventar).
+
+## 2) Escenarios/Bullets → Casos de prueba (mínimo esperado)
+Para cada escenario/bullet generar al menos:
+- 1 caso **happy path**
+- 1 caso **negativo** o de validación (si aplica)
+- 1 caso **edge** relevante (si aplica)
+
+Clasifica el test como:
+- UI (solo navegador)
+- API (solo request)
+- E2E (UI + API cuando aporta valor)
+
+## 3) Definition of Done (QA) para cualquier feature
+Antes de dar por terminada una solicitud de implementación:
+- ✅ Tests siguen POM (no raw selectors en `.spec.ts`)
+- ✅ Page Objects extienden `BasePage`
+- ✅ `fixtures/custom-fixtures.ts` es la fuente única de `test/expect`
+- ✅ Data-driven: sin hardcoding de credenciales/URLs/datos sensibles
+- ✅ Se ejecutaron tests relevantes (`npm test` o spec)
+- ✅ Reporte considerado (`npm run report`) y resultados accionables
+- ✅ Seguridad (según aplique): auth/authz, validación de inputs, validaciones de upload (tipo/tamaño), no exposición de datos sensibles, manejo correcto de errores
+
+## 4) Entregable obligatorio en la respuesta del agente
+Cuando se implementa o modifica código, SIEMPRE terminar con un bloque:
+
+### Resumen de Implementación
+- Qué se implementó / cambió
+- AC cubiertos (lista corta)
+- Archivos creados/actualizados
+- Comandos ejecutados y resultado
+- Cómo ver el reporte (`npm run report`)

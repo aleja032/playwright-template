@@ -33,7 +33,7 @@ alwaysApply: true
 
 ### IV. TypeScript Strict Mode
 
-**MUST**: All code in `pages/`, `fixtures/`, `utils/`, `agents/` uses TypeScript strict mode.
+**MUST**: All code in `pages/`, `fixtures/`, `utils/` uses TypeScript strict mode.
 
 - `tsconfig.json` MUST have `strict: true`
 - Prefer reusable utilities in `utils/` over duplication
@@ -43,15 +43,41 @@ alwaysApply: true
 
 **MUST**: Tests are deterministic, parallelizable, and browser-agnostic.
 
-- Tests MUST run in parallel across multiple Playwright projects (chrome )
 - NO assumptions about specific browsers or execution order
 - Flakiness is a bug, not acceptable noise
 - `playwright.config.ts` MUST configure retries, traces, screenshots, and videos
+
+### VI. Acceptance Criteria (AC) as Source of Truth
+
+**MUST**: Each feature starts from a spec in `specs/`.
+
+- Specs MUST define acceptance criteria as **Escenarios** with verifiable bullets
+- The agent MUST NOT create new acceptance criteria
+- Each scenario/bullet SHOULD map to at least one test case (traceability)
+- If the spec has gaps (missing preconditions, missing data, missing `data-testid`, "pendiente definir"), the agent MUST ask questions and MUST NOT guess
+- If `data-testid` are missing (Frontend) but a reference link is provided, the agent MUST open the link and extract the missing info before proceeding
+
+### VII. Reporting
+
+**MUST**: Test execution must produce actionable evidence.
+
+- Use Playwright HTML report (`npm run report`)
+- Keep failures debuggable via configured artifacts (trace/video/screenshot)
+
+### VIII. Security (Minimum)
+
+**MUST**: When applicable, include security-oriented coverage.
+
+- Auth/AuthZ (roles/permissions)
+- Input validation (injection/XSS/SQLi as relevant)
+- File uploads (type/size constraints)
+- Error handling (no sensitive info leakage)
 
 ## Project Structure
 
 ```text
 playwright-template/
+├── specs/           # Feature specs (acceptance criteria)
 ├── data-driven/     # Test data (JSON files)
 ├── fixtures/        # Custom fixtures (custom-fixtures.ts)
 ├── pages/           # Page Objects (BasePage.ts, [PageName].ts)
@@ -72,5 +98,5 @@ playwright-template/
 - Conflicts MUST be resolved by adapting practices to this document
 - Amendments require: PR justification, impact summary, version bump, date update
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-17 | **Last Amended**: 2025-12-17
+**Version**: 1.2.0 | **Ratified**: 2025-12-17 | **Last Amended**: 2026-02-06
 
