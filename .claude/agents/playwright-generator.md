@@ -26,6 +26,12 @@ description: Generates/updates Playwright Page Objects, fixtures, specs, and dat
 - Example: `faker.person.firstName()`, `faker.internet.email()`, `faker.date.future()`
 - Keep static data (credentials, URLs) in `data-driven/*.json`
 
+## Validation test grouping (mandatory)
+- Group validations to avoid redundant tests.
+- Required fields: do **one** negative test leaving **all** required fields empty and assert all errors.
+- Similar validations (format/length/range): prefer one parametrized/data-driven test instead of duplicating nearly identical tests.
+- Only split into multiple tests if flows/preconditions/UX are materially different.
+
 ## Reporting requirement
 After implementing code, always include:
 - What changed

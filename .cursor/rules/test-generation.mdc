@@ -27,10 +27,19 @@ Regla de clarificación (antes de generar):
 - "Escenario: Acceso y visualización" → lista de bullets.
 - Cada bullet debe ser un resultado esperado verificable (UI/API/E2E).
 
-### Validaciones
-Cuando un escenario incluye validaciones (tamaño de archivo, formatos, status codes), generar:
+### Validaciones (agrupar y evitar redundancia)
+Cuando un escenario incluye validaciones (tamaño de archivo, formatos, required fields, status codes), generar:
 - 1 test happy path
-- 1 test negativo por validación clave (si aplica)
+- 1 test negativo **agrupado** por escenario/validación (evitar combinatoria sin valor)
+
+Reglas de agrupación:
+- Si hay múltiples campos obligatorios: **NO** crear 1 test por campo vacío. Preferir **1 solo test** que deje **todos** los campos obligatorios vacíos y valide **todas** las señales de error en el mismo flujo.
+- Si hay múltiples validaciones similares (formatos/longitudes/rangos): preferir **un solo test parametrizado/data-driven** (array de casos) en lugar de duplicar tests casi idénticos.
+- Solo separar en tests individuales si cada validación implica:
+  - flujos distintos (navegación/estado diferente), o
+  - mensajes/UX distintos que requieren pasos diferentes, o
+  - precondiciones distintas que no conviene mezclar.
+- Dentro del mismo test, usar `test.step()` para agrupar la lectura/validación por bullet (mantener trazabilidad con los AC).
 
 ## Estructura de Page Object
 

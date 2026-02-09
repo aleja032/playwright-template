@@ -25,9 +25,18 @@ playwright-template/
 
 ## Instalación
 
+### Dependencias requeridas
+
+- **Playwright** (`@playwright/test`): runner y API de automatización.
+- **Faker** (`@faker-js/faker`): generación de datos variados/dinámicos para evitar hardcode.
+- **agent-browser** (CLI): automatización de navegador para agentes (extracción de `data-testid`, navegación rápida, screenshots, etc.).
+  - Verifica que está disponible con: `agent-browser --help`
+  - Referencia: `.claude/skills/agent-browser/SKILL.md`
+
 ```bash
 npm install
 npx playwright install
+npm install -D @faker-js/faker
 ```
 
 ## Ejecutar Tests
@@ -99,16 +108,17 @@ import testData from '../data-driven/test-data.json';
 import loginData from '@data/login-data.json';
 import usersData from '@data/users.data.json';
 ```
-### libreria faker para la data:
+### Librería Faker para la data
+
+Ejemplo de uso:
 
 ```typescript
-npm install @faker-js/faker --save-dev
-
 import { faker } from '@faker-js/faker';
 
 const randomName = faker.person.fullName(); // Rowan Nikolaus
-const randomEmail = faker.internet.email(); 
-´´´
+const randomEmail = faker.internet.email();
+```
+
 ## 🔧 Configuración
 
 Copia `.env.example` a `.env` y ajusta las variables:

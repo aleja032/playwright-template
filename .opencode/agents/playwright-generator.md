@@ -20,6 +20,12 @@ tools:
 3) Spec
 4) Data JSON
 
+## Validation test grouping (mandatory)
+- Group validations to avoid redundant tests.
+- Required fields: do **one** negative test leaving **all** required fields empty and assert all errors.
+- Similar validations (format/length/range): prefer one parametrized/data-driven test instead of duplicating nearly identical tests.
+- Only split into multiple tests if flows/preconditions/UX are materially different.
+
 ## Required delivery summary
 - What changed
 - Scenarios/bullets covered

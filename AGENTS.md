@@ -2,6 +2,16 @@
 
 This document provides essential instructions for AI agents operating in this repository. Adherence to these standards ensures consistency, maintainability, and reliability across the automation suite.
 
+# Reglas universales (NO HACER)
+
+- NO introducir/pegar secretos (tokens, passwords). Si detectas secretos, pedir que se usen variables de entorno.
+- NO correr suites de tests muy pesadas por defecto; preferir tests específicos y preguntar antes de algo costoso.
+- NO crear tests innecesarios/redundantes:
+  - Evitar “combinatoria” sin valor (ej: si hay 5 campos obligatorios, NO crear 5 tests separados dejando vacío 1 campo a la vez solo para verificar "required").
+  - Preferir 1 test que valide el comportamiento de "campos obligatorios" con TODOS los campos obligatorios vacíos (o el set mínimo representativo).
+  - Solo separar en tests individuales si cada campo tiene reglas/errores/UX distintos (mensajes diferentes, validaciones diferentes, formatos, dependencias).
+  - Si se necesita cobertura por campo, preferir un test parametrizado/data-driven en lugar de duplicar código.
+
 ## 1. Command Reference
 
 ### Test Execution
