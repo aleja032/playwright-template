@@ -1,15 +1,3 @@
-# Feature: <NOMBRE>
-
-## Objetivo
-Explica en 2-5 líneas qué problema resuelve y para quién.
-
-## Alcance
-- **Incluye**:
-  - 
-- **No incluye**:
-  - 
-
-
 ## Tipo de solicitud (obligatorio)
 - Frontend | Backend | Ambos
 
@@ -22,47 +10,16 @@ Explica en 2-5 líneas qué problema resuelve y para quién.
 - UI path principal: `/<ruta>`
 - Base URL esperada (si aplica): `BASE_URL`
 
-## Mapeo UI (data-testid)
-Lista los elementos clave que deben existir para que los tests sean estables.
-- `<data-testid>`: Descripción breve del elemento / página
-
-Regla:
-- Si falta algún `data-testid`, se debe ir al enlace de referencia y extraer la info adicional.
-- Si aún no se puede confirmar, se debe preguntar (no inventar).
-
 ## Contrato API (si aplica)
-- `METHOD /endpoint`
-  - Request: campos relevantes
-  - Response: campos relevantes
-  - Status codes: 200/201/400/401/403/404/409/etc.
-
+documentacion en caso que exista
 ## Datos de Prueba (data-driven)
 Archivo sugerido: `data-driven/<feature>-data.json`
-- Escenario `happyPath`: 
-- Escenario `validationError`: 
-- Escenario `unauthorized`: 
 
 ## Criterios de Aceptación (AC)
-Trabajar AC como **Escenarios** (como el ejemplo provisto) con bullets verificables.
-
 Regla:
 - El agente NO crea AC nuevos.
 - Si hay cosas **pendiente definir**, marcarlo explícitamente como GAP y listar preguntas.
 - Antes de crear tests/código, se debe **resolver cualquier duda/vacío** (no asumir).
-
-### Escenario 1: <título>
-- <Resultado esperado verificable>
-- <Resultado esperado verificable>
-
-**Validación (si aplica):**
-- <regla de validación 1>
-- <regla de validación 2>
-
-### Escenario 2: <título>
-- <Resultado esperado verificable>
-
-## Casos borde / validaciones
-- 
 
 ## Seguridad (según aplique)
 - Auth / AuthZ (roles/permisos)
