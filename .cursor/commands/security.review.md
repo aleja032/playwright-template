@@ -12,7 +12,6 @@ $ARGUMENTS
 Revisar una spec `specs/<feature>.md` (o AC pegados) para detectar riesgos de seguridad y cobertura mínima necesaria.
 
 Reglas:
-- NO inventar AC ni requisitos.
 - Mapear recomendaciones a escenarios/bullets existentes cuando sea posible.
 
 Checklist mínimo

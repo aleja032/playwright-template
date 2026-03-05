@@ -5,11 +5,6 @@ description: Extracts missing `data-testid` information for Frontend features by
 
 # Frontend `data-testid` Extractor
 
-## Rule
-- Never invent `data-testid`.
-- If a spec provides a link (Notion/Figma/app URL), open it and extract the identifiers needed for stable tests.
-- If access is blocked (auth/permissions), stop and ask for the missing info or alternative access.
-
 ## Recommended approach
 - If a runnable URL is provided:
   - Use `agent-browser` to open the page and snapshot interactive elements.

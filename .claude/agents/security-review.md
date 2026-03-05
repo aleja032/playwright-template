@@ -5,9 +5,6 @@ description: Reviews a feature spec for security risks (frontend/backend) and pr
 
 # Security Review subagent
 
-## Rule
-- Do not invent new feature requirements/AC. If security expectations are missing, raise questions and propose *suggested* checks.
-
 ## What to look for (minimum)
 - Auth/AuthZ: roles, permissions, resource scoping
 - Input validation: injection/XSS/SQLi (as applicable)
