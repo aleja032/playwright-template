@@ -120,7 +120,13 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
 
 ---
 
-## 4. Code Style & Naming Conventions
+## 4. Comments Policy
+
+- Do NOT add comments to generated code unless the logic is genuinely complex and non-obvious.
+- Never add comments that just restate what the code does (e.g., `// fill email field`, `// click submit button`).
+- Allowed cases: complex conditional logic, non-obvious workarounds, or multi-step flows with non-trivial ordering that cannot be inferred from method/variable names alone.
+
+## 5. Code Style & Naming Conventions
 
 ### Naming
 - **Page Objects**: PascalCase with `Page` suffix (e.g., `DashboardPage.ts`).
@@ -137,7 +143,7 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
 
 ---
 
-## 5. Error Handling & Best Practices
+## 6. Error Handling & Best Practices
 
 - **Web-First Assertions**: Use `expect(locator).toBeVisible()`, `expect(page).toHaveURL()`, etc. Avoid manual boolean checks.
 - **Deterministic Tests**: 
@@ -149,7 +155,7 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
 
 ---
 
-## 6. Common Pitfalls & Troubleshooting
+## 7. Common Pitfalls & Troubleshooting
 
 - **Race Conditions**: If a test fails intermittently, check if an action happens before the page is ready. Use `waitForPageLoad()` or `expect(locator).toBeVisible()`.
 - **Selector Fragility**: Avoid using generated CSS classes (e.g., `.css-1abcde`). Always prioritize `data-testid`.
@@ -159,7 +165,7 @@ The `BasePage` class provides common utilities. Reuse them instead of raw Playwr
 
 ---
 
-## 7. Project Structure Overview
+## 8. Project Structure Overview
 
 ```text
 playwright-template/

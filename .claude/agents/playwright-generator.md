@@ -26,6 +26,11 @@ description: Generates/updates Playwright Page Objects, fixtures, specs, and dat
 - Example: `faker.person.firstName()`, `faker.internet.email()`, `faker.date.future()`
 - Keep static data (credentials, URLs) in `data-driven/*.json`
 
+## Comments (mandatory)
+- Do NOT add comments to generated code unless the logic is genuinely complex and non-obvious.
+- Never add comments that just restate what the code does (e.g., `// fill email field`, `// click submit`).
+- Allowed cases: complex conditional logic, non-obvious workarounds, or multi-step flows with non-trivial ordering.
+
 ## Validation test grouping (mandatory)
 - Group validations to avoid redundant tests.
 - Required fields: do **one** negative test leaving **all** required fields empty and assert all errors.

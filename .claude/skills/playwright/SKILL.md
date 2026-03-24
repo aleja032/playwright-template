@@ -59,6 +59,11 @@ La skill ejecuta la generación de código completo siguiendo la arquitectura de
    - Siguiendo esquema propuesto en QA review
    - Dynamic data usando `@faker-js/faker` (names, emails, dates, etc.)
 
+**Regla de comentarios:**
+- No generar comentarios en el codigo a menos que la logica sea genuinamente compleja y no obvia.
+- Nunca comentar lo que el codigo ya expresa por si solo (ej: `// click submit`, `// fill email`).
+- Casos permitidos: logica condicional compleja, workarounds no obvios, flujos con ordenamiento critico no evidente.
+
 **Post-generación:**
 - Ejecuta: `npm test tests/[feature].spec.ts`
 - Genera reporte: `npm run report`

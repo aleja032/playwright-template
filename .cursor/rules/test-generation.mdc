@@ -4,6 +4,11 @@ alwaysApply: true
 
 # Reglas de Generación de Tests
 
+## Comentarios (obligatorio)
+- NO agregar comentarios al código generado a menos que la lógica sea genuinamente compleja y no obvia.
+- Nunca comentar lo que el código ya expresa por sí solo (ej: `// llenar email`, `// hacer click en submit`).
+- Casos permitidos: lógica condicional compleja, workarounds no obvios, o flujos multi-paso con ordenamiento crítico no evidente.
+
 ## Orden de Generación OBLIGATORIO
 
 Siempre generar código en este orden estricto:
