@@ -1,0 +1,37 @@
+# Rule: Test Scenarios Output
+
+When executing, reviewing, or analyzing tests, always generate a file called `escenarios.md`
+in the root of the project with the following structure.
+
+## File structure
+
+The file must contain two sections:
+
+### 1. Functional Scenarios
+### 2. Security Scenarios
+
+Each section must have a table with exactly these columns:
+
+| ID | Escenario | Resultado Esperado | Estado | Issue |
+|----|-----------|--------------------|--------|-------|
+
+## Column rules
+
+- **ID**: Sequential per section. Format: `F-001`, `F-002`... for functional
+  and `S-001`, `S-002`... for security.
+- **Escenario**: Brief description of what was tested. No emojis.
+- **Resultado Esperado**: What the correct behavior should be. No emojis.
+- **Estado**: Use ONLY ✅ for passed or ❌ for failed. No text, no other emojis.
+- **Issue**:
+  - If Estado is ✅: leave empty.
+  - If Estado is ❌: include a brief description of the failure AND attach
+    or reference a screenshot using the format: `![screenshot](./issues/F-001.png)`
+    Save screenshots in a folder called `/issues` at the root of the project.
+
+## Format rules
+
+- Do NOT use emojis anywhere except the Estado column (✅ or ❌ only).
+- Do NOT add extra columns.
+- Do NOT add summaries, conclusions, or additional sections beyond the two required.
+- Always overwrite `escenarios.md` with the updated matrix after each test run or for new tests.
+- The file must be written in Spanish.

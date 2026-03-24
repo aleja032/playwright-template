@@ -15,7 +15,6 @@ Guía para Claude Code (claude.ai/code) al trabajar en este repositorio.
 ## Fuentes de verdad (evitar duplicación)
 - Reglas y arquitectura: `AGENTS.md` y `.cursor/rules/playwright-rules.mdc`
 - Reglas de generación: `.cursor/rules/test-generation.mdc`
-- QA/DoD y entregables: `.cursor/rules/qa-deliverables.mdc`
 - Specs por feature (criterios de aceptación): `specs/*.md` (ver `specs/_template.md`)
 
 ## Notas sobre criterios de aceptación
@@ -36,6 +35,16 @@ Guía para Claude Code (claude.ai/code) al trabajar en este repositorio.
 ## Browser Automation (agent-browser)
 Usar `agent-browser` para navegación/interacción rápida con sitios web.
 - Docs: `.claude/skills/agent-browser/SKILL.md`
+
+## QA Testing (qa-tester agent)
+Para ejecutar testing funcional y de seguridad:
+- Agente: `.claude/agents/qa-tester.md`
+- Formato output: `.claude/rules/escenarios-output.md`
+- Genera: `escenarios.md` (reporte de escenarios funcionales y de seguridad)
+- Screenshots: `/issues/` (para escenarios fallidos)
+
+**Uso:**
+El agente lee `specs/[feature].md`, diseña y ejecuta escenarios de prueba, y genera un reporte estructurado siguiendo el formato definido en `escenarios-output.md`.
 
 ## Entregable obligatorio (para cualquier feature/cambio)
 Al finalizar cambios de código, terminar la respuesta con:

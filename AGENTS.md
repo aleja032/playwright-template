@@ -43,6 +43,21 @@ agent-browser snapshot -i
 agent-browser click @e1
 ```
 
+### QA Testing
+- **Use `qa-tester` agent for functional and security testing**: Executes comprehensive test plans and generates standardized test scenario reports.
+- **Documentation**: See `.claude/agents/qa-tester.md`, `.cursor/agents/qa-tester.mdc`, or `.opencode/agents/qa-tester.md` for agent details.
+- **Output format**: Follows rules defined in `.claude/rules/escenarios-output.md` (or `.cursor/rules/escenarios-output.mdc`, `.opencode/rules/escenarios-output.md`).
+- **Deliverables**:
+  - `escenarios.md` in project root with functional and security test scenarios
+  - Screenshots of failures in `/issues/` directory
+
+**Workflow:**
+1. Read feature spec from `specs/[feature].md`
+2. Design test scenarios (happy path, edge cases, validations, security)
+3. Execute tests using `agent-browser` or Playwright
+4. Generate `escenarios.md` report
+5. Capture and save failure screenshots
+
 ---
 
 ## 2. Core Architecture Principles

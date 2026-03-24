@@ -10,7 +10,7 @@ La skill ya está disponible automáticamente. Verifica con:
 
 ### Sintaxis
 ```bash
-/playwright <spec-file> <scope> [opciones]
+/playwright <spec-file> <scope>
 ```
 
 ### Ejemplos Comunes
@@ -30,16 +30,6 @@ La skill ya está disponible automáticamente. Verifica con:
 /playwright specs/checkout.md both
 ```
 
-**Saltar QA review (ya validado):**
-```bash
-/playwright specs/login.md frontend --skip-qa
-```
-
-**Saltar extracción de testid (ya documentados):**
-```bash
-/playwright specs/dashboard.md frontend --skip-testid
-```
-
 ---
 
 ## Flujo Automático
@@ -48,22 +38,7 @@ La skill ejecuta estos pasos automáticamente:
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  1. QA Review                                   │
-│  • Valida criterios de aceptación              │
-│  • Identifica gaps y ambigüedades              │
-│  • Genera plan de pruebas                      │
-│  • Propone esquema data-driven                 │
-└─────────────────────────────────────────────────┘
-                     ↓
-┌─────────────────────────────────────────────────┐
-│  2. Extracción de data-testid (solo Frontend)  │
-│  • Lee referencias del spec                    │
-│  • Usa agent-browser para extraer testid      │
-│  • Genera mapping de elementos UI             │
-└─────────────────────────────────────────────────┘
-                     ↓
-┌─────────────────────────────────────────────────┐
-│  3. Generación de Código                       │
+│  1. Generación de Código                       │
 │  • Page Objects (pages/*)                     │
 │  • Fixtures (fixtures/custom-fixtures.ts)     │
 │  • Test Specs (tests/*.spec.ts)               │
@@ -71,7 +46,7 @@ La skill ejecuta estos pasos automáticamente:
 └─────────────────────────────────────────────────┘
                      ↓
 ┌─────────────────────────────────────────────────┐
-│  4. Ejecución y Reporte                        │
+│  2. Ejecución y Reporte                        │
 │  • npm test tests/[feature].spec.ts           │
 │  • npm run report                              │
 │  • Muestra resultados                          │
@@ -95,8 +70,7 @@ La skill ejecuta estos pasos automáticamente:
 - `both`: UI + API
 
 **3. Referencias (si Frontend):**
-- Links a Figma/Notion/app con diseño
-- O `data-testid` ya documentados en el spec
+- `data-testid` deben estar documentados en el spec
 
 ---
 
@@ -106,15 +80,6 @@ La skill termina con un resumen completo:
 
 ```markdown
 ## ✅ Generación Completa: [Feature Name]
-
-### 📋 QA Review
-- Escenarios cubiertos: 3 escenarios, 12 bullets
-- Plan de pruebas: 8 UI tests, 4 negative cases
-- Gaps resueltos: Ninguno
-
-### 🔍 Data-testid
-- Extraídos: 15 testid de Figma
-- Mapping: data-driven/login-testid.json
 
 ### 💻 Código Generado
 Archivos creados:
@@ -148,12 +113,6 @@ npm run report
 ### Error: "Scope not specified"
 **Causa:** Falta el argumento `frontend|backend|both`
 **Solución:** Agregar scope: `/playwright specs/login.md frontend`
-
-### Warning: "Cannot extract testid"
-**Causa:** No hay links de referencia en el spec
-**Solución:**
-- Agregar link a Figma/Notion en sección "Enlaces / Referencias"
-- O usar `--skip-testid` y documentar manualmente en el spec
 
 ### Error: "Tests failing after generation"
 **Causa:** Selectores incorrectos, datos inválidos, timing issues
