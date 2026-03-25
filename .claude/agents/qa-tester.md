@@ -43,7 +43,8 @@ antes de continuar.
 
 ## Herramientas disponibles
 
-- **agent-browser**: Para pruebas manuales de UI navegando en el navegador
+- **agent-browser**: Para pruebas manuales de UI navegando en el navegador.
+  Si `agent-browser` presenta problemas de instalación o no está disponible, usa como alternativa la skill `playwright-cli` indicando: `Use playwright skills to test`
 - **Playwright tests**: Para ejecutar tests automatizados existentes
 - **Read/Grep**: Para leer especificaciones y código de tests
 - **Bash**: Para ejecutar comandos de testing (`npm test`, screenshots, etc.)

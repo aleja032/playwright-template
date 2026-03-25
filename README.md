@@ -32,12 +32,18 @@ playwright-template/
 - **agent-browser** (CLI): automatización de navegador para agentes (extracción de `data-testid`, navegación rápida, screenshots, etc.).
   - Verifica que está disponible con: `agent-browser --help`
   - Referencia: `.claude/skills/agent-browser/SKILL.md`
+- **playwright-cli** (alternativa): si `agent-browser` presenta problemas de instalación o no está disponible, usa `playwright-cli` como reemplazo.
+  - Instalar: `npm install -g @playwright/cli@latest`
+  - Para indicarle al agente que use esta alternativa, incluye en tu prompt: `Use playwright skills to test`
 
 ```bash
 npm install
 npx playwright install
-npm install -g agent-browser  
+npm install -g agent-browser
 npm install -D @faker-js/faker
+
+# Alternativa si agent-browser presenta problemas de instalación o no está disponible:
+npm install -g @playwright/cli@latest
 ```
 
 ## Ejecutar Tests
