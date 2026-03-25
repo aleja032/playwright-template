@@ -36,6 +36,7 @@ playwright-template/
 ```bash
 npm install
 npx playwright install
+npm install -g agent-browser  
 npm install -D @faker-js/faker
 ```
 
@@ -119,7 +120,7 @@ const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email();
 ```
 
-## 🔧 Configuración
+## Configuración
 
 Copia `.env.example` a `.env` y ajusta las variables:
 
